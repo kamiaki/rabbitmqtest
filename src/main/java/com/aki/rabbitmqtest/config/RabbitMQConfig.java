@@ -6,7 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * 这个配置 在这个例子中没起到作用
+ *  %%%%%   这个配置 在这个例子中没起到作用   %%%%
+ *  %%%%%   这个配置 在这个例子中没起到作用   %%%%
+ *  %%%%%   这个配置 在这个例子中没起到作用   %%%%
+ *  %%%%%   这个配置 在这个例子中没起到作用   %%%%
+ *  只有这几个常量字符串被引用
  */
 @Configuration
 public class RabbitMQConfig {
