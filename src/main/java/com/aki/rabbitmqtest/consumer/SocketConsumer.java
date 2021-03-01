@@ -57,6 +57,12 @@ public class SocketConsumer {
         // 参数一 消息标识  参数二 是否批量确认
         // 配置文件 修改## 签收方式
         //spring.rabbitmq.listener.simple.acknowledge-mode=manual
-        channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
+        boolean isInsert = false;
+//        boolean isInsert = true;
+        if (isInsert){
+            channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
+        }else{
+            throw new RuntimeException("没有存入成功!");
+        }
     }
 }
