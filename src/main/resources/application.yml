@@ -1,0 +1,28 @@
+spring:
+  rabbitmq:
+    host: 192.168.80.128
+    listener:
+      simple:
+        ## auto表示自动完成这次消费，manual表示需要手动告知完成消费
+        acknowledge-mode: manual
+        ## listener开几个线程处理数据
+        concurrency: 10
+        ## linstener 最大开几个线程
+        max-concurrency: 20
+        ## 一次拿几条数据
+        prefetch: 10
+        retry:
+          # 是否开启重试
+          enabled: true
+          # 重试次数
+          max-attempts: 5
+          # 重试间隔
+          initial-interval: 1000
+        # 发送失败是否重新排队 默认true
+        default-requeue-rejected: true
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+server:
+  port: 8008
