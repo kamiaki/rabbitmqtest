@@ -15,13 +15,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
     static final public String exchangeName = "socket-exchange";
+    // 后端测试用的队列
     static final public String queueName = "socket-queue";
     static final public String keyName = "socket.message.key";
+    // 前端测试用的队列
+    static final public String queueNameWeb = "socket-queueWeb";
+    static final public String keyNameWeb = "socket.message.keyWeb";
 
 
     /**
      * Direct模式
      * 注意 这里创建的队列，绑定的默认的交换机 direct。下面的生产者消费者 都没有用到这个
+     *
+     * 这个没有做 收发 就是定义一下
      *
      * @return
      */

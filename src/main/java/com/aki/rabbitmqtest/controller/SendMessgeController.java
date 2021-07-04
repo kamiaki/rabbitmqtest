@@ -2,6 +2,7 @@ package com.aki.rabbitmqtest.controller;
 
 import com.aki.rabbitmqtest.pojo.SocketMessage;
 import com.aki.rabbitmqtest.producer.SoketProducer;
+import com.aki.rabbitmqtest.producer.SoketProducerWeb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,8 @@ import java.util.Date;
 public class SendMessgeController {
     @Autowired
     private SoketProducer soketProducer;
+    @Autowired
+    private SoketProducerWeb soketProducerWeb;
     @GetMapping("sendSocket")
     public SocketMessage sendSocket(@RequestParam String content) throws Exception{
         SocketMessage socketMessage = new SocketMessage();
@@ -22,6 +25,7 @@ public class SendMessgeController {
         socketMessage.setSendTime(new Date());
         socketMessage.setContent(content);
         soketProducer.send(socketMessage);
+        soketProducerWeb.send(socketMessage);
         return socketMessage;
     }
 }
