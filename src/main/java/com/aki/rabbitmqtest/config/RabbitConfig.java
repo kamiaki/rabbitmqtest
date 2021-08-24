@@ -23,8 +23,8 @@ public class RabbitConfig {
      * 创建队列
      * @return
      */
-    @Bean
-    Queue queue() {
+    @Bean("testQueue")
+    Queue testQueue() {
         return new Queue(queueName,false);
     }
 
@@ -32,50 +32,16 @@ public class RabbitConfig {
      * 创建信道
      * @return
      */
-    @Bean
-    TopicExchange exchange() {
+    @Bean("testExchange")
+    TopicExchange testExchange() {
         return new TopicExchange(topicExchangeName);
     }
 
-    /**
-     * 绑定队列和信道
-     * @param queue
-     * @param exchange
-     * @return
-     */
     @Bean
-    Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with("");
+    Binding binding(@Qualifier(value = "testQueue") Queue testQueue,
+                    @Qualifier(value = "testExchange")  TopicExchange testExchange) {
+        return BindingBuilder.bind(testQueue).to(testExchange).with("");
     }
-
-
-//    /**
-//     * 创建队列
-//     * @return
-//     */
-//    @Bean("testQueue")
-//    Queue testQueue() {
-//        return new Queue(Config.TEST_QUEUE,false);
-//    }
-//
-//    /**
-//     * 创建信道
-//     * @return
-//     */
-//    @Bean("testExchange")
-//    FanoutExchange testExchange() {
-//        return new FanoutExchange(Config.TEST_EXCHANGE);
-//    }
-//
-//    /**
-//     * 绑定队列和信道
-//     * @return
-//     */
-//    @Bean
-//    Binding binding(@Qualifier(value = "testQueue") Queue testQueue,
-//                    @Qualifier(value = "testExchange")  FanoutExchange testExchange) {
-//        return BindingBuilder.bind(testQueue).to(testExchange);
-//    }
 
 
 //    /**
